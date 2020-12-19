@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovePlayer : MonoBehaviour
+public class SmoothMove : MonoBehaviour
 {
     // Public fields
     [Header("Public Settings (Please Modify)")]
