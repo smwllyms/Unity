@@ -8,10 +8,10 @@ public class SmoothMove : MonoBehaviour
     [Header("Public Settings (Please Modify)")]
     [SerializeField] private float moveSpeed = 3f;
 
-    // Debug Public fields
+    // Debug fields
     [Header("Debug Settings")]
-    [SerializeField] private float acceleration = 1f;
-    [SerializeField] private Vector3 currentVelocity = Vector3.zero;
+    private float acceleration = 1f;
+    private Vector3 currentVelocity = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,8 @@ public class SmoothMove : MonoBehaviour
         int vInput = ((Input.GetKey(KeyCode.W)) ? 1 : 0) - ((Input.GetKey(KeyCode.S)) ? 1 : 0);
         int hInput = ((Input.GetKey(KeyCode.D)) ? 1 : 0) - ((Input.GetKey(KeyCode.A)) ? 1 : 0);
 
-        Vector3 idealVector = new Vector3(hInput, 0, vInput).normalized; 
+        Vector3 normalizedVector = new Vector3(hInput, 0, vInput).normalized; 
+        Vector3 idealVector = transform.rotation * normalizedVector;
 
         transform.position = Vector3.SmoothDamp(transform.position, transform.position + (idealVector * moveSpeed), ref currentVelocity, acceleration, moveSpeed);
         
